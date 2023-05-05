@@ -79,6 +79,7 @@ if __name__ == '__main__':
         TARGET_COLUMNS = [f'{TARGET}+{i}' for i in range(1, horizon_ + 1)]
         #
         data_set = data_set.dropna()
+        data_set.to_csv('data.csv')
         #
         X = data_set.drop(TARGET_COLUMNS, axis=1)
         Y = data_set[TARGET_COLUMNS]
