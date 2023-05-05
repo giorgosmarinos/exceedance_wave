@@ -124,11 +124,11 @@ if __name__ == '__main__':
             all_methods['LR'].fit(X_train, y_train_clf)
             all_methods['RFR'].fit(X_train, y_train)
             all_methods['LASSO'].fit(X_train, y_train)
-            all_methods['HRE'].fit_and_trim(X_train, y_train, select_percentile=.5)
+            #all_methods['HRE'].fit_and_trim(X_train, y_train, select_percentile=.5)
             #
             print('Predicting...')
             y_hat_num_rf = all_methods['RFR'].predict(X_test)
-            y_hat_num_he = all_methods['HRE'].predict(X_test)
+            #y_hat_num_he = all_methods['HRE'].predict(X_test)
             y_hat_num_ls = all_methods['LASSO'].predict(X_test)
             #
             print('Exceedance probability')
@@ -139,13 +139,13 @@ if __name__ == '__main__':
                 scale=y_std,
                 threshold=thr,
             )
-            print('MC he')
-            y_prob_he_ae = CDFEngine.get_probs(
-                y_hat=y_hat_num_he,
-                distribution='norm',
-                scale=y_std,
-                threshold=thr,
-            )
+            #print('MC he')
+            #y_prob_he_ae = CDFEngine.get_probs(
+            #    y_hat=y_hat_num_he,
+            #    distribution='norm',
+            #    scale=y_std,
+            #    threshold=thr,
+            #)
             print('MC ls')
             y_prob_ls_ae = CDFEngine.get_probs(
                 y_hat=y_hat_num_ls,
@@ -159,15 +159,15 @@ if __name__ == '__main__':
                 'RFC+SMOTE': all_methods['RFC+SMOTE'].predict_proba(X_test),
                 'LR': all_methods['LR'].predict_proba(X_test),
                 'RFR': all_methods['RFR'].predict_exceedance_proba(X_test, thr),
-                'HRE': all_methods['HRE'].predict_proba(X_test, thr),
+                #'HRE': all_methods['HRE'].predict_proba(X_test, thr),
                 'RFR+CDF': y_prob_rf_ae,
                 'LASSO+CDF': y_prob_ls_ae,
-                'HRE+CDF': y_prob_he_ae,
+                #'HRE+CDF': y_prob_he_ae,
             }
             #
             forecasts = {
                 'RFR': y_hat_num_rf,
-                'HRE': y_hat_num_he,
+                #'HRE': y_hat_num_he,
                 'LASSO': y_hat_num_ls,
             }
             #
