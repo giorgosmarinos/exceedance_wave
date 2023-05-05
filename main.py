@@ -35,8 +35,8 @@ if __name__ == '__main__':
 
     path = Path(DATA_DIR)
 
-    wave = pd.read_csv(path.absolute())
-    # wave = pd.read_csv(DATA_DIR)
+    #wave = pd.read_csv(path.absolute())
+    wave = pd.read_csv('/home/gmarinos/Documents/Code/exceedance_wave/data/wave_data.csv')
 
     # Preprocessing data
     # df = df.drop(UNUSED_COLUMNS, axis=1)
